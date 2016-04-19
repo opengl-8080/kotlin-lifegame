@@ -1,0 +1,17 @@
+.page {
+  display: none;
+}
+
+.margin-right {
+  margin-right: 10px;
+}
+
+.message {
+  height: 40px;
+  margin-top: 20px;
+  font-size: 1.3em;
+}
+
+.board {
+  cursor: pointer;
+}

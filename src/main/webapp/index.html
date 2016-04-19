@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LIFE GAME</title>
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/lifegame.css" />
+  </head>
+  <body>
+    <div id="registerGameDefinitionForm" class="page registerGameDefinition container text-center">
+      <h1>新しいゲーム</h1>
+      <div class="form-group form-inline">
+      
+        <div class="message">
+          <span class="error text-danger"></span>
+        </div>
+        
+        <ul class="list-inline">
+          <li>
+            <label for="gameDefinitionSize" class="control-label">サイズ : </label>
+          </li>
+          <li>
+            <input type="number" id="gameDefinitionSize" class="size form-control" min="1" max="35"/>
+          </li>
+        </ul>
+      </div>
+      <button id="registerGameDefinitionButton" class="btn btn-primary">登録</button>
+    </div>
+    
+    <div id="editGameDefinitionForm" class="page editGameDefinition container text-center">
+      <h1>セルの編集</h1>
+      <ul class="list-inline">
+        <li>
+          <button class="startButton btn btn-default">開始</button>
+        </li>
+        <li>
+          <button class="updateButton btn btn-primary">更新</button>
+        </li>
+        <li>
+          <button class="removeButton btn btn-danger btn-sm">削除</button>
+        </li>
+      </ul>
+      
+      <div class="message">
+        <span class="success text-primary"></span>
+        <span class="error text-danger"></span>
+      </div>
+      
+      <div class="help-block">
+        Ctrl + クリックで白く塗る
+      </div>
+      
+      <div class="board"></div>
+    </div>
+    
+    <div id="runGameForm" class="page runGame container text-center">
+      <h1>ライフゲーム</h1>
+      <ul class="list-inline">
+        <li>
+          <button class="stopButton btn btn-warning">一時停止</button>
+        </li>
+        <li>
+          <button class="restartButton btn btn-primary" disabled>再開</button>
+        </li>
+        <li>
+          <select class="speed form-control">
+            <option value="slow">ゆっくり</option>
+            <option value="normal">ふつう</option>
+            <option value="speedy">はやい</option>
+          </select>
+        </li>
+      </ul>
+      
+      <div class="message">
+        <span class="error text-danger"></span>
+      </div>
+      
+      <div class="board"></div>
+    </div>
+    
+    <div id="notFound" class="page notFound">
+      <h1 class="message">404 Not Found</h1>
+    </div>
+    
+    <script src="js/lib/require.js" data-main="js/app.js"></script>
+  </body>
+</html>
