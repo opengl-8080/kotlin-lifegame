@@ -1,4 +1,18 @@
-apply plugin: 'eclipse-wtp'
+buildscript {
+    ext {
+        kotlinVersion = '1.0.1-2'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
+
+apply plugin: 'kotlin'
 apply plugin: 'war'
 
 sourceCompatibility = '1.8'
@@ -11,6 +25,7 @@ repositories {
 }
 
 dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     compile 'ch.qos.logback:logback-classic:1.1.3'
     compile 'org.flywaydb:flyway-core:3.2.1'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.6.4'
@@ -37,12 +52,4 @@ task lifegame(type: Exec, dependsOn: war) {
         '-Xrunjdwp:transport=dt_socket,server=y,address=18000,suspend=n',
         '-jar', payaraJar, '--deploy', warFile
         )
-}
-
-eclipse {
-    project.name = 'lifegame-javaee'
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.9'
 }
