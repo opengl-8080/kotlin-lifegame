@@ -47,7 +47,7 @@ public class GameResource {
         
         return Response
                     .created(uri)
-                    .entity(Maps.map("id", id))
+                    .entity(Maps.Companion.map("id", id))
                     .build();
     }
     

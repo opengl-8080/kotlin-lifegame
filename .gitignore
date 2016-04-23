@@ -2,3 +2,5 @@
 build/
 gradle/
 .gradle/
+lifegame_db/
+derby.log

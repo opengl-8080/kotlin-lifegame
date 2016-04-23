@@ -9,7 +9,7 @@ import java.util.Map;
  * @param <K> マップのキー
  * @param <V> マップのバリュー
  */
-public class Maps<K, V> {
+public class Maps__<K, V> {
     
     private Map<K, V> map = new HashMap<>();
     
@@ -21,15 +21,15 @@ public class Maps<K, V> {
      * @return マップ
      */
     public static <K, V> Map<K, V> map(K key, V value) {
-        return new Maps<K, V>().put(key, value).get();
+        return new Maps__<K, V>().put(key, value).get();
     }
     
     /**
      * 新しいマップを生成する。
      * @return 生成されたビルダーインスタンス
      */
-    public static <K, V> Maps<K, V> newMap() {
-        return new Maps<K, V>();
+    public static <K, V> Maps__<K, V> newMap() {
+        return new Maps__<K, V>();
     }
     
     /**
@@ -38,7 +38,7 @@ public class Maps<K, V> {
      * @param value バリュー
      * @return このビルダー
      */
-    public Maps<K, V> put(K key, V value) {
+    public Maps__<K, V> put(K key, V value) {
         this.map.put(key, value);
         return this;
     }
@@ -51,5 +51,5 @@ public class Maps<K, V> {
         return this.map;
     }
     
-    private Maps() {}
+    private Maps__() {}
 }

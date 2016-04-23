@@ -48,10 +48,10 @@ public class GameDefinitionResource {
                     .fromResource(GameDefinitionResource.class)
                     .path(GameDefinitionResource.class, "search")
                     .build(id);
-        
+
         return Response
                     .created(uri)
-                    .entity(Maps.map("id", id))
+                    .entity(Maps.Companion.map("id", id))
                     .build();
     }
     
@@ -74,7 +74,7 @@ public class GameDefinitionResource {
         GameDefinition gameDefinition = this.saveService.update(dto);
         
         return Response.ok()
-                        .entity(Maps.map("version", gameDefinition.getVersion()))
+                        .entity(Maps.Companion.map("version", gameDefinition.getVersion()))
                         .build();
     }
     
