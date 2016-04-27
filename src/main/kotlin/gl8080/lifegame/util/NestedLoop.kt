@@ -1,6 +1,5 @@
 package gl8080.lifegame.util
 
-import java.util.function.Function
 import java.util.function.Supplier
 
 /**
@@ -40,12 +39,27 @@ object NestedLoop {
      * @return 生成された {@code Map}
      */
     fun <K, V> collectMap(size: Int, keySupplier: BiIntSupplier<K>, valueSupplier: BiIntSupplier<V>): Map<K, V> {
+        return collectMap(size, keySupplier, {i, j -> valueSupplier.get(i, j)})
+    }
+
+    /**
+     * 二重ループを実行して、 {@code Map} を生成する。
+     * @param size サイズ
+     * @param keySupplier キーを生成する処理
+     * @param valueSupplier バリューを生成する処理
+     * @return 生成された {@code Map}
+     */
+    fun <K, V> collectMap(size: Int, keySupplier: BiIntSupplier<K>, valueSupplier: Supplier<V>): Map<K, V> {
+        return collectMap(size, keySupplier, {i, j -> valueSupplier.get()})
+    }
+
+    private fun <K, V> collectMap(size: Int, keySupplier: BiIntSupplier<K>, valueSupplier: (Int, Int) -> V): Map<K, V> {
         val map = mutableMapOf<K, V>()
 
         for (i in 0..size) {
             for (j in 0..size) {
                 val key = keySupplier.get(i, j)
-                val value = valueSupplier.get(i, j)
+                val value = valueSupplier(i, j)
 
                 map.put(key, value)
             }
@@ -54,21 +68,17 @@ object NestedLoop {
         return map
     }
 
-    fun <K, V> collectMap(size: Int, keySupplier: BiIntSupplier<K>, valueSupplier: Supplier<V>): Map<K, V> {
-        return collectMap(size, keySupplier, fun (i: Int, j: Int): V = valueSupplier.get())
-    }
-
-
-    fun foo(f: Function<String, String>) {
-
-    }
-
-    fun a() {
-        foo(object: Function<String, String> {
-            override fun apply(string: String): String {
-                return ""
+    /**
+     * 入れ子の {@code List} を反復処理する。
+     * @param nestedList 入れ子の {@code List}
+     * @param iterator 反復処理（１つ目と２つ目の引数にはループインデックスが渡され、３つ目の引数に {@code List} の要素が渡されます）
+     */
+    fun <T> each(nestedList: List<List<T>>, iterator: TriConsumer<Int, Int, T>) {
+        for (i in nestedList.indices) {
+            val row = nestedList[i]
+            for (j in row.indices) {
+                iterator.accept(i, j, row[j])
             }
-        })
+        }
     }
 }
-

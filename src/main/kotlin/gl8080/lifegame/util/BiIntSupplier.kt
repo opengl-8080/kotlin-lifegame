@@ -7,5 +7,5 @@ package gl8080.lifegame.util
 @FunctionalInterface
 interface BiIntSupplier<T> {
 
-    fun get(i: Int, j: Int): T
+    abstract fun get(i: Int, j: Int): T
 }

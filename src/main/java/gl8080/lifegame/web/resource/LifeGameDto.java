@@ -25,7 +25,7 @@ public class LifeGameDto {
         dto.size = lifeGame.getSize();
         dto.version = lifeGame.getVersion();
 
-        dto.cells = NestedLoop.collectList(lifeGame.getSize(), (i, j) -> {
+        dto.cells = NestedLoop.INSTANCE.collectList(lifeGame.getSize(), (i, j) -> {
             return lifeGame.getCells().get(new Position(i, j)).isAlive();
         });
         
@@ -37,7 +37,7 @@ public class LifeGameDto {
      * @param iterator 反復処理
      */
     public void eachCell(BiConsumer<Position, Boolean> iterator) {
-        NestedLoop.each(this.cells, (i, j, status) -> {
+        NestedLoop.INSTANCE.each(this.cells, (i, j, status) -> {
             iterator.accept(new Position(i, j), status);
         });
     }

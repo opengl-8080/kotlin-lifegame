@@ -54,7 +54,7 @@ public class GameDefinition extends AbstractEntity implements LifeGame {
         }
         
         this.size = size;
-        this.cells = NestedLoop.collectMap(size, Position::new, CellDefinition::new);
+        this.cells = NestedLoop.INSTANCE.collectMap(size, Position::new, CellDefinition::new);
     }
 
     @Override
