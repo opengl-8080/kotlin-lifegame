@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 import gl8080.lifegame.logic.definition.GameDefinition;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * ゲームを表すクラス。
@@ -64,7 +66,11 @@ public class Game extends AbstractEntity implements LifeGame {
     }
 
     @Override
-    public Map<Position, Cell> getCells() {
+    public Map<Position, LifeGameCell> getCells() {
+        return new HashMap<>(this.cells);
+    }
+
+    public Map<Position, Cell> _getCells() {
         return new HashMap<>(this.cells);
     }
 
@@ -95,4 +101,16 @@ public class Game extends AbstractEntity implements LifeGame {
      */
     @Deprecated @SuppressWarnings("unused")
     private Game() {}
+
+    @NotNull
+    @Override
+    public String dump() {
+        return DefaultImpls.dump(this);
+    }
+
+    @Nullable
+    @Override
+    public Long getVersion() {
+        return DefaultImpls.getVersion(this);
+    }
 }

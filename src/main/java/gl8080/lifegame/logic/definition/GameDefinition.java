@@ -18,6 +18,7 @@ import gl8080.lifegame.logic.LifeGameCell;
 import gl8080.lifegame.logic.Position;
 import gl8080.lifegame.logic.exception.IllegalParameterException;
 import gl8080.lifegame.util.NestedLoop;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * ゲーム定義を表すクラス。
@@ -58,7 +59,7 @@ public class GameDefinition extends AbstractEntity implements LifeGame {
     }
 
     @Override
-    public Map<Position, ? extends LifeGameCell> getCells() {
+    public Map<Position, LifeGameCell> getCells() {
         return new HashMap<>(this.cells);
     }
     
@@ -109,4 +110,9 @@ public class GameDefinition extends AbstractEntity implements LifeGame {
     @Deprecated @SuppressWarnings("unused")
     private GameDefinition() {}
 
+    @NotNull
+    @Override
+    public String dump() {
+        return DefaultImpls.dump(this);
+    }
 }

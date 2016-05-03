@@ -37,7 +37,7 @@ public class GameTest {
     @Test
     public void 周囲のセルのセット行わない場合_隣接するセルは空のまま() {
         // verify
-        Map<Position, Cell> cells = game.getCells();
+        Map<Position, Cell> cells = game._getCells();
         
         Cell corner = cells.get(new Position(0, 0));
         
@@ -56,7 +56,7 @@ public class GameTest {
         @Test
         public void 角のセルには_周囲３つのセルが設定されていること() {
             // verify
-            Map<Position, Cell> cells = game.getCells();
+            Map<Position, Cell> cells = game._getCells();
             
             Cell corner = cells.get(new Position(0, 0));
             
@@ -72,7 +72,7 @@ public class GameTest {
         @Test
         public void 右真ん中のセルには_周囲５つのセルが設定されていること() {
             // verify
-            Map<Position, Cell> cells = game.getCells();
+            Map<Position, Cell> cells = game._getCells();
             
             Cell corner = cells.get(new Position(1, 2));
             
@@ -90,8 +90,8 @@ public class GameTest {
         @Test
         public void 真ん中のセルには_周囲８つのセルが設定されていること() {
             // verify
-            Map<Position, Cell> cells = game.getCells();
-            
+            Map<Position, Cell> cells = game._getCells();
+
             Cell corner = cells.get(new Position(1, 1));
             
             List<Cell> neighbors = corner.getNeighbors();
@@ -135,7 +135,7 @@ public class GameTest {
         .getCells()
         .forEach((p, c) -> {
             
-            Cell cell = game.getCells().get(p);
+            LifeGameCell cell = game.getCells().get(p);
             assertThat(p.toString(), cell.isAlive(), is(c.isAlive()));
         });
     }
@@ -146,7 +146,7 @@ public class GameTest {
         gameDef
             .getCells()
             .forEach((position, cellDef) -> {
-                Cell cell = game.getCells().get(position);
+                LifeGameCell cell = game.getCells().get(position);
                 
                 assertThat(position.toString(), cellDef.isAlive(), is(cell.isAlive()));
             });

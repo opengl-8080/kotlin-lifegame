@@ -18,10 +18,10 @@ object NestedLoop {
     fun <T> collectList(size: Int, supplier: BiIntSupplier<T>): List<List<T>> {
         val matrix = mutableListOf<List<T>>()
 
-        for (i in 0..size) {
+        for (i in 0..size-1) {
             val row = mutableListOf<T>()
 
-            for (j in 0..size) {
+            for (j in 0..size-1) {
                 row.add(supplier.get(i, j))
             }
 
@@ -56,8 +56,8 @@ object NestedLoop {
     private fun <K, V> collectMap(size: Int, keySupplier: BiIntSupplier<K>, valueSupplier: (Int, Int) -> V): Map<K, V> {
         val map = mutableMapOf<K, V>()
 
-        for (i in 0..size) {
-            for (j in 0..size) {
+        for (i in 0..size-1) {
+            for (j in 0..size-1) {
                 val key = keySupplier.get(i, j)
                 val value = valueSupplier(i, j)
 

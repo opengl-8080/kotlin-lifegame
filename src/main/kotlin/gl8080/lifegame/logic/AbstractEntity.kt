@@ -15,6 +15,10 @@ abstract class AbstractEntity : Serializable {
 
     constructor()
 
+    protected  constructor(id: Long) {
+        this.id = id
+    }
+
     fun getId(): Long? {
         return this.id
     }
