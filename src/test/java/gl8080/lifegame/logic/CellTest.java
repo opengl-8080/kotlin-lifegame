@@ -22,7 +22,7 @@ public class CellTest {
         @Test
         public void 死んだセルを生成できる() {
             // setup
-            Cell deadCell = Cell.dead();
+            Cell deadCell = Cell.Companion.dead();
             
             // verify
             assertThat(deadCell.isAlive(), is(false));
@@ -31,7 +31,7 @@ public class CellTest {
         @Test
         public void 生きたセルを生成できる() {
             // setup
-            Cell liveCell = Cell.alive();
+            Cell liveCell = Cell.Companion.alive();
             
             // verify
             assertThat(liveCell.isAlive(), is(true));
@@ -43,10 +43,10 @@ public class CellTest {
         @Test
         public void 隣のセルにnullを渡した場合_例外がスローされること() throws Exception {
             // setup
-            Cell liveCell = Cell.alive();
+            Cell liveCell = Cell.Companion.alive();
             
             // verify
-            exception.expect(NullPointerException.class);
+            exception.expect(IllegalArgumentException.class);
             
             // exercise
             liveCell.setNeighbors(null);
@@ -59,7 +59,7 @@ public class CellTest {
         
         @Before
         public void setup() {
-            deadCell = Cell.dead();
+            deadCell = Cell.Companion.dead();
         }
         
         @Test
@@ -94,7 +94,7 @@ public class CellTest {
         
         @Before
         public void setup() {
-            liveCell = Cell.alive();
+            liveCell = Cell.Companion.alive();
         }
         
         @Test
@@ -140,7 +140,7 @@ public class CellTest {
         
         @Before
         public void setup() {
-            liveCell = Cell.alive();
+            liveCell = Cell.Companion.alive();
             liveCell.setNeighbors(alive(1).dead(7));
         }
         
@@ -240,9 +240,9 @@ public class CellTest {
             
             for (int i=0; i<length; i++) {
                 if (i < this.aliveCount) {
-                    cells.add(Cell.alive());
+                    cells.add(Cell.Companion.alive());
                 } else {
-                    cells.add(Cell.dead());
+                    cells.add(Cell.Companion.dead());
                 }
             }
             

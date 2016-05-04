@@ -45,7 +45,7 @@ public class Game extends AbstractEntity implements LifeGame {
 
     private void initializeCells(GameDefinition gameDef) {
         gameDef.getCells().forEach((position, cellDef) -> {
-            this.cells.put(position, cellDef.isAlive() ? Cell.alive() : Cell.dead());
+            this.cells.put(position, cellDef.isAlive() ? Cell.Companion.alive() : Cell.Companion.dead());
         });
     }
 

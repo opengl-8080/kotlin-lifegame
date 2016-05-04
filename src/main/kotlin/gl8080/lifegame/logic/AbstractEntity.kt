@@ -13,7 +13,7 @@ abstract class AbstractEntity : Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private var id: Long? = null
 
-    constructor()
+    protected constructor()
 
     protected  constructor(id: Long) {
         this.id = id
