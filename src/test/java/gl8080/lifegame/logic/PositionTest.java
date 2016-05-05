@@ -126,7 +126,7 @@ public class PositionTest {
         String actual = position.toString();
         
         // verify
-        assertThat(actual, is("Position (5, 2)"));
+        assertThat(actual, is("Position(vertical=5, horizontal=2)"));
     }
     
     public class 周囲の位置を取得するメソッドのテスト {
