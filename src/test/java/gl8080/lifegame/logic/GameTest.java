@@ -37,7 +37,7 @@ public class GameTest {
     @Test
     public void 周囲のセルのセット行わない場合_隣接するセルは空のまま() {
         // verify
-        Map<Position, Cell> cells = game._getCells();
+        Map<Position, Cell> cells = game.getCells();
         
         Cell corner = cells.get(new Position(0, 0));
         
@@ -56,7 +56,7 @@ public class GameTest {
         @Test
         public void 角のセルには_周囲３つのセルが設定されていること() {
             // verify
-            Map<Position, Cell> cells = game._getCells();
+            Map<Position, Cell> cells = game.getCells();
             
             Cell corner = cells.get(new Position(0, 0));
             
@@ -72,7 +72,7 @@ public class GameTest {
         @Test
         public void 右真ん中のセルには_周囲５つのセルが設定されていること() {
             // verify
-            Map<Position, Cell> cells = game._getCells();
+            Map<Position, Cell> cells = game.getCells();
             
             Cell corner = cells.get(new Position(1, 2));
             
@@ -90,7 +90,7 @@ public class GameTest {
         @Test
         public void 真ん中のセルには_周囲８つのセルが設定されていること() {
             // verify
-            Map<Position, Cell> cells = game._getCells();
+            Map<Position, Cell> cells = game.getCells();
 
             Cell corner = cells.get(new Position(1, 1));
             
@@ -168,7 +168,7 @@ public class GameTest {
     @Test
     public void コンストラクタに_null_を渡した場合_例外がスローされること() throws Exception {
         // verify
-        exception.expect(NullPointerException.class);
+        exception.expect(IllegalArgumentException.class);
         
         // exercise
         new Game(null);
