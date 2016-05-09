@@ -1,25 +1,23 @@
-package gl8080.lifegame.logic;
-
-import gl8080.lifegame.logic.exception.NotFoundEntityException;
+package gl8080.lifegame.logic
 
 /**
  * ゲームの永続化を行うリポジトリ。
  */
-public interface GameRepository {
+interface GameRepository {
 
     /**
      * ゲームを登録する。
      * @param game 登録するゲーム
      */
-    void register(Game game);
-    
+    fun register(game: Game)
+
     /**
      * 指定した ID のゲームを検索する。
      * @param id ID
      * @return 検索結果
      * @throws NotFoundEntityException 指定した ID に紐づくゲームが存在しない場合
      */
-    Game search(long id);
+    fun search(id: Long): Game
 
     /**
      * 指定した ID のゲームを検索し、排他ロックする。
@@ -27,11 +25,11 @@ public interface GameRepository {
      * @return 検索結果
      * @throws NotFoundEntityException 指定した ID に紐づくゲームが存在しない場合
      */
-    Game searchWithLock(long id);
+    fun searchWithLock(id: Long): Game
 
     /**
      * 指定したゲームを削除する。
      * @param game 削除するゲーム。
      */
-    void remove(Game game);
+    fun remove(game: Game)
 }
