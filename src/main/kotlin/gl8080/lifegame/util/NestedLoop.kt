@@ -38,28 +38,13 @@ object NestedLoop {
      * @param valueSupplier バリューを生成する処理
      * @return 生成された {@code Map}
      */
-    fun <K, V> collectMap(size: Int, keySupplier: BiIntSupplier<K>, valueSupplier: BiIntSupplier<V>): Map<K, V> {
-        return collectMap(size, keySupplier, {i, j -> valueSupplier.get(i, j)})
-    }
-
-    /**
-     * 二重ループを実行して、 {@code Map} を生成する。
-     * @param size サイズ
-     * @param keySupplier キーを生成する処理
-     * @param valueSupplier バリューを生成する処理
-     * @return 生成された {@code Map}
-     */
-    fun <K, V> collectMap(size: Int, keySupplier: BiIntSupplier<K>, valueSupplier: Supplier<V>): Map<K, V> {
-        return collectMap(size, keySupplier, {i, j -> valueSupplier.get()})
-    }
-
-    private fun <K, V> collectMap(size: Int, keySupplier: BiIntSupplier<K>, valueSupplier: (Int, Int) -> V): Map<K, V> {
+    fun <K, V> collectMap(size: Int, keySupplier: (Int, Int) -> K, valueSupplier: () -> V): Map<K, V> {
         val map = mutableMapOf<K, V>()
 
         for (i in 0..size-1) {
             for (j in 0..size-1) {
-                val key = keySupplier.get(i, j)
-                val value = valueSupplier(i, j)
+                val key = keySupplier(i, j)
+                val value = valueSupplier()
 
                 map.put(key, value)
             }

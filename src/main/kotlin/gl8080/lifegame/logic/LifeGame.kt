@@ -66,7 +66,7 @@ interface LifeGame {
      *
      * @return バージョン番号
      */
-    fun getVersion(): Long? {
+    open fun getVersion(): Long? {
         return null
     }
 }
