@@ -6,6 +6,7 @@ import gl8080.lifegame.logic.LifeGameCell
 import gl8080.lifegame.logic.Position
 import gl8080.lifegame.logic.exception.IllegalParameterException
 import gl8080.lifegame.util.NestedLoop
+import java.util.*
 import javax.persistence.*
 
 /**
@@ -54,7 +55,7 @@ class GameDefinition(
         cell.setStatus(status)
     }
 
-    override fun getCells(): Map<Position, LifeGameCell> = this.cells
+    override fun getCells(): Map<Position, LifeGameCell> = HashMap(this.cells)
 
     override fun getVersion() = this.version
 

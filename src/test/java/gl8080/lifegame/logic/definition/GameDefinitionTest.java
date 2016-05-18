@@ -50,7 +50,7 @@ public class GameDefinitionTest {
     @Test
     public void サイズに上限値を指定しても_例外はスローされないこと() throws Exception {
         // exercise
-        new GameDefinition(GameDefinition.MAX_SIZE);
+        new GameDefinition(GameDefinition.Companion.getMAX_SIZE());
     }
     
     @Test
@@ -59,7 +59,7 @@ public class GameDefinitionTest {
         exception.expect(IllegalParameterException.class);
         
         // exercise
-        new GameDefinition(GameDefinition.MAX_SIZE + 1);
+        new GameDefinition(GameDefinition.Companion.getMAX_SIZE() + 1);
     }
     
     @Test
@@ -91,7 +91,7 @@ public class GameDefinitionTest {
     @Test
     public void 指定した位置がnullの場合_例外がスローされる() {
         // verify
-        exception.expect(NullPointerException.class);
+        exception.expect(IllegalArgumentException.class);
         
         // exercise
         gameDef.setStatus(null, true);
