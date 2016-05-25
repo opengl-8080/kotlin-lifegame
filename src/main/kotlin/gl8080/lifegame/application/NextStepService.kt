@@ -7,13 +7,13 @@ import javax.ejb.Stateless
 import javax.inject.Inject
 
 @Stateless
-open class NextStepService_ {
-    @field:Inject
+open class NextStepService {
+    @Inject
     lateinit private var logger: Logger
-    @field:Inject
+    @Inject
     lateinit private var repository: GameRepository
 
-    fun next(id: Long): Game {
+    open fun next(id: Long): Game {
         this.logger.info("next step game (id={})", id)
 
         val game = this.repository.searchWithLock(id)
