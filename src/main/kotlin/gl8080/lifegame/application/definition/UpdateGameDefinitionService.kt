@@ -15,10 +15,10 @@ open class UpdateGameDefinitionService {
     lateinit private var gameDefinitionRepository: GameDefinitionRepository
 
     open fun update(dto: LifeGameDto): GameDefinition {
-        this.logger.info("update game definition (id={})", dto.getId())
+        this.logger.info("update game definition (id={})", dto.id)
         this.logger.debug("dto = {}", dto)
 
-        val gameDefinition = this.gameDefinitionRepository.searchWithLock(dto.id)
+        val gameDefinition = this.gameDefinitionRepository.searchWithLock(dto.getId())
 
         dto.eachCell { position, status -> gameDefinition.setStatus(position, status) }
         gameDefinition.setVersion(dto.version)

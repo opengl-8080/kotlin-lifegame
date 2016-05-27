@@ -59,7 +59,7 @@ class GameDefinition(
 
     override fun getVersion() = this.version
 
-    fun setVersion(version: Long) {
+    fun setVersion(version: Long?) {
         this.version = version
     }
 

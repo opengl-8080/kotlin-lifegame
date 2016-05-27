@@ -15,14 +15,14 @@ object NestedLoop {
      * @param supplier 入れ子の {@code List} に入れる各要素を供給する処理
      * @return 入れ子の {@code List}
      */
-    fun <T> collectList(size: Int, supplier: BiIntSupplier<T>): List<List<T>> {
+    fun <T> collectList(size: Int, supplier: (Int, Int) -> T): List<List<T>> {
         val matrix = mutableListOf<List<T>>()
 
         for (i in 0..size-1) {
             val row = mutableListOf<T>()
 
             for (j in 0..size-1) {
-                row.add(supplier.get(i, j))
+                row.add(supplier(i, j))
             }
 
             matrix.add(row)
@@ -63,6 +63,20 @@ object NestedLoop {
             val row = nestedList[i]
             for (j in row.indices) {
                 iterator.accept(i, j, row[j])
+            }
+        }
+    }
+
+    /**
+     * 入れ子の {@code List} を反復処理する。
+     * @param nestedList 入れ子の {@code List}
+     * @param iterator 反復処理（１つ目と２つ目の引数にはループインデックスが渡され、３つ目の引数に {@code List} の要素が渡されます）
+     */
+    fun <T> each(nestedList: List<List<T>>, iterator: (Int, Int, T) -> Unit) {
+        for (i in nestedList.indices) {
+            val row = nestedList[i]
+            for (j in row.indices) {
+                iterator(i, j, row[j])
             }
         }
     }
